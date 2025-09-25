@@ -12,6 +12,14 @@ character_x, character_y = 400, 300
 dirX, dirY = 0, 0
 ifRight = 1
 
+def character_boundary():
+    global character_x, character_y
+
+    if character_x > 750: character_x = 750
+    if character_x < 50: character_x = 50
+    if character_y > 550: character_y = 550
+    if character_y < 50: character_y = 50
+
 def handle_events():
     global running
     global character_x, character_y, dirX, dirY, ifRight
@@ -51,8 +59,9 @@ while running:
     update_canvas()
     handle_events()
     frame = (frame + 1) % 8
-    character_x += dirX * 5
-    character_y += dirY * 5
+    character_x += dirX * 10
+    character_y += dirY * 10
+    character_boundary()
     delay(0.05)
 
 
