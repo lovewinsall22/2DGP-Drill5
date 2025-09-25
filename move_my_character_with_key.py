@@ -49,9 +49,6 @@ def handle_events():
             elif event.key == SDLK_DOWN:
                 dirY += 1; ifRight = 2
 
-
-
-
 while running:
     clear_canvas()
     ground.draw(800 // 2, 600 // 2, 800, 600)
@@ -63,6 +60,5 @@ while running:
     character_y += dirY * 10
     character_boundary()
     delay(0.05)
-
 
 close_canvas()
