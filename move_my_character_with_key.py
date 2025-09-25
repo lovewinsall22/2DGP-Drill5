@@ -9,10 +9,11 @@ running = True
 frame = 0
 
 character_x, character_y = 400, 300
+dir = 0
 
 def handle_events():
     global running
-    global character_x, character_y
+    global character_x, character_y, dir
 
     events = get_events()
     for event in events:
@@ -23,12 +24,19 @@ def handle_events():
                 running = False
             elif event.key == SDLK_RIGHT:
                 character_x += 10
+                dir = 1
             elif event.key == SDLK_LEFT:
                 character_x -= 10
+                dir = 0
             elif event.key == SDLK_UP:
                 character_y += 10
+                dir = 1
             elif event.key == SDLK_DOWN:
                 character_y -= 10
+                dir = 0
+        elif event.type == SDL_KEYUP:
+            if dir == 1: dir = 3
+            elif dir == 0: dir = 2
 
 
 
@@ -36,7 +44,7 @@ def handle_events():
 while running:
     clear_canvas()
     ground.draw(800 // 2, 600 // 2, 800, 600)
-    character.clip_draw(frame * 100, 100, 100, 100, character_x, character_y)
+    character.clip_draw(frame * 100, dir * 100 , 100, 100, character_x, character_y)
     update_canvas()
     handle_events()
     frame = (frame + 1) % 8
