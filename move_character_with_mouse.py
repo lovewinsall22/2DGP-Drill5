@@ -16,7 +16,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             running = False
         elif event.type == SDL_MOUSEMOTION:
-            x, y = event.x, TUK_HEIGHT - 1 - event.y # 마우스 위치 업데이트
+            x, y = event.x, TUK_HEIGHT - 1 - event.y # 이벤트로 넘어오는 좌표는 윈도우 좌표계, 따라서 변환해줘야함
         elif event.type == SDL_KEYDOWN and event.key ==  SDLK_ESCAPE:
             running = False
 
